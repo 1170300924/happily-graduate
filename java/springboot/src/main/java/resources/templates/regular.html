@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+<meta charset="utf-8"> 
+<title>学生画像系统</title> 
+
+</head>
+<body>
+
+<table width="1600" border="0">
+<tr>
+<td colspan="3"style="text-align:center;">
+<h1>学生画像系统-规律性维度</h1>
+</td>
+</tr>
+
+<tr>
+<td style="width:100px;vertical-align:top;">
+</td>
+<td style="width:600px;vertical-align:top;">
+	规律性得分为：<span>[[${regular}]]</span><br><br>
+	<span>[[${avg}]]</span><br><br>
+	<span>[[${zaofan}]]</span><br>
+	<span>[[${zaofan2}]]</span><br><br>
+	<span>[[${wufan}]]</span><br>
+	<span>[[${wufan2}]]</span><br><br>
+	<span>[[${wanfan}]]</span><br>
+	<span>[[${wanfan2}]]</span><br><br>
+	<span>[[${xizao}]]</span><br>
+	<span>[[${xizao2}]]</span><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form action="/userList?document.getElementById("studentid").value" method="get">
+    <input type="hidden" th:value="${studentid}" name="studentid"><br/>
+    <button>返回</button>
+</form>
+	
+</td>
+	
+	
+
+<tr>
+<td colspan="3" style="background-color:#FFA500;text-align:center;">
+王梓舟毕业设计</td>

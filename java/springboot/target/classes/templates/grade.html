@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+<meta charset="utf-8"> 
+<title>学生画像系统</title> 
+
+</head>
+<body>
+
+<table width="1600" border="0">
+<tr>
+<td colspan="3"style="text-align:center;">
+<h1>学生画像系统-成绩信息维度</h1>
+</td>
+</tr>
+
+<tr>
+<td style="width:100px;vertical-align:top;">
+</td>
+<td style="width:600px;vertical-align:top;">
+	平均学分绩：<span>[[${xuefen}]]</span><br><br>
+	数理基础课学分绩：<span>[[${like}]]</span><br><br>
+	专业课学分绩：<span>[[${zhuanye}]]</span><br><br>
+	英语课学分绩：<span>[[${yingyu}]]</span><br><br>
+	文化素质课学分绩：<span>[[${wenhua}]]</span><br><br>
+	思政课学分绩：<span>[[${sizheng}]]</span><br><br>
+	
+	<span>[[${word}]]</span><br><br>
+	<form action="/userList?document.getElementById("studentid").value" method="get">
+    <input type="hidden" th:value="${studentid}" name="studentid"><br/>
+    <button>返回</button>
+</form>
+	
+</td>
+<td style="height:600px;width:100px;vertical-align:top;">
+<canvas id="myCanvas" width="400" height="400" >
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<input type="hidden" th:value="${xuefen}" id="xuefen"/>
+<input type="hidden" th:value="${like}" id="like"/>
+<input type="hidden" th:value="${zhuanye}" id="zhuanye"/>
+<input type="hidden" th:value="${yingyu}" id="yingyu"/>
+<input type="hidden" th:value="${wenhua}" id="suzhi"/>
+<input type="hidden" th:value="${sizheng}" id="sizheng"/>
+
+<script type="text/javascript">
+  var mW = 400;
+  var mH = 400;
+  var weidudata=['平均分','数理','专业','英语','文化','思政'];
+  var data2=new Array(6);
+  data2[0]= document.getElementById("xuefen").value;
+  data2[1]= document.getElementById("like").value;
+  data2[2]= document.getElementById("zhuanye").value;
+  data2[3]= document.getElementById("yingyu").value;
+  data2[4]= document.getElementById("suzhi").value;
+  data2[5]= document.getElementById("sizheng").value;
+  var i;
+  mData=new Array(6);
+  for(i=0;i<6;i++){
+	  mData[i]=new Array(2);
+	  mData[i][0]=weidudata[i];
+	  mData[i][1]=data2[i];
+  }
+  var mCount = mData.length; //边数
+  var mCenter = mW /2; //中心点
+  var mRadius = mCenter - 100; //半径(减去的值用于给绘制的文本留空间)
+  var mAngle = Math.PI * 2 / mCount; //角度
+  var mCtx = null;
+  var mColorPolygon = '#B8B8B8'; //多边形颜色
+  var mColorLines = '#B8B8B8'; //顶点连线颜色
+  var mColorText = '#000000';
+ 
+  //初始化
+  (function(){
+    var c=document.getElementById("myCanvas");
+	var mCtx=c.getContext("2d");
+ 
+    drawPolygon(mCtx);
+    drawLines(mCtx);
+    drawText(mCtx);
+    drawRegion(mCtx);
+  })();
+ 
+  // 绘制多边形边
+  function drawPolygon(ctx){
+    ctx.save(); // save the default state
+ 
+    ctx.strokeStyle = mColorPolygon;
+    var r = mRadius/ mCount; //单位半径
+    //画6个圈
+    for(var i = 0; i < mCount; i ++){
+      ctx.beginPath(); //开始路径
+      var currR = r * ( i + 1); //当前半径
+      //画6条边
+      for(var j = 0; j < mCount; j ++) {
+        var x = mCenter + currR * Math.cos(mAngle * j);
+        var y = mCenter + currR * Math.sin(mAngle * j);
+ 
+        console.log('x:' + x, 'y:' + y);
+        ctx.lineTo(x, y);
+      }
+      ctx.closePath();  //闭合路径
+      ctx.stroke();
+    }
+ 
+    ctx.restore(); // restore to the default state
+  }
+ 
+  //顶点连线
+  function drawLines(ctx){
+    ctx.save();
+ 
+    ctx.beginPath();
+    ctx.strokeStyle = mColorLines;
+ 
+    for(var i = 0; i < mCount; i ++){
+      var x = mCenter + mRadius * Math.cos(mAngle * i);
+      var y = mCenter + mRadius * Math.sin(mAngle * i);
+ 
+      ctx.moveTo(mCenter, mCenter);
+      ctx.lineTo(x, y);
+    }
+ 
+    ctx.stroke();
+ 
+    ctx.restore();
+  }
+ 
+  //绘制文本
+  function drawText(ctx){
+    ctx.save();
+ 
+    var fontSize = mCenter / 12;
+    ctx.font = fontSize + 'px Microsoft Yahei';
+    ctx.fillStyle = mColorText;
+ 
+    for(var i = 0; i < mCount; i ++){
+      var x = mCenter + mRadius * Math.cos(mAngle * i);
+      var y = mCenter + mRadius * Math.sin(mAngle * i);
+ 
+      if( mAngle * i >= 0 && mAngle * i <= Math.PI / 2 ){
+        ctx.fillText(mData[i][0], x, y + fontSize);
+      }else if(mAngle * i > Math.PI / 2 && mAngle * i <= Math.PI){
+        ctx.fillText(mData[i][0], x - ctx.measureText(mData[i][0]).width, y + fontSize);
+      }else if(mAngle * i > Math.PI && mAngle * i <= Math.PI * 3 / 2){
+        ctx.fillText(mData[i][0], x - ctx.measureText(mData[i][0]).width, y);
+      }else{
+        ctx.fillText(mData[i][0], x, y);
+      }
+ 
+    }
+ 
+    ctx.restore();
+  }
+ 
+  //绘制数据区域
+  function drawRegion(ctx){
+    ctx.save();
+ 
+    ctx.beginPath();
+    for(var i = 0; i < mCount; i ++){
+      var x = mCenter + mRadius * Math.cos(mAngle * i) * mData[i][1] / 100;
+      var y = mCenter + mRadius * Math.sin(mAngle * i) * mData[i][1] / 100;
+ 
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+    ctx.fill();
+ 
+    ctx.restore();
+  }
+</script>
+</td>
+</tr>	
+	
+
+<tr>
+<td colspan="3" style="background-color:#FFA500;text-align:center;">
+王梓舟毕业设计</td>

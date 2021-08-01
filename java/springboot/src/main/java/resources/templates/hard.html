@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+<meta charset="utf-8"> 
+<title>学生画像系统</title> 
+
+</head>
+<body>
+
+<table width="1600" border="0">
+<tr>
+<td colspan="3"style="text-align:center;">
+<h1>学生画像系统-勤奋学习维度</h1>
+</td>
+</tr>
+
+<tr>
+<td style="width:100px;vertical-align:top;">
+</td>
+<td style="width:600px;vertical-align:top;">
+	累计在图书馆学习了：<span>[[${lab1}]]</span>小时<br><br>
+	最多的一天曾学习了：<span>[[${lab2}]]</span>小时<br><br>
+	从 <span>[[${lab3}]]</span>学习到 <span>[[${lab4}]]</span> <br><br>
+	累计在教学楼学习了：<span>[[${cla1}]]</span>小时<br><br>
+	最多的一天曾学习了：<span>[[${cla2}]]</span>小时<br><br>
+	从 <span>[[${cla3}]]</span>学习到 <span>[[${cla4}]]</span> <br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form action="/userList?document.getElementById("studentid").value" method="get">
+    <input type="hidden" th:value="${studentid}" name="studentid"><br/>
+    <button>返回</button>
+</form>
+	
+</td>
+	
+	
+
+<tr>
+<td colspan="3" style="background-color:#FFA500;text-align:center;">
+王梓舟毕业设计</td>

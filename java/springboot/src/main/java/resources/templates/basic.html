@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+<meta charset="utf-8"> 
+<title>学生画像系统</title> 
+
+</head>
+<body>
+
+<table width="1600" border="0">
+<tr>
+<td colspan="3"style="text-align:center;">
+<h1>学生画像系统-基本信息维度</h1>
+</td>
+</tr>
+
+<tr>
+<td style="width:100px;vertical-align:top;">
+</td>
+<td style="width:600px;vertical-align:top;">
+	姓名：<span>[[${basic.name}]]</span><br><br>
+	学号：<span>[[${basic.studentid}]]</span><br><br>
+	性别：<span>[[${basic.sex}]]</span><br><br>
+	学院：<span>[[${basic.institute}]]</span><br><br>
+	专业：<span>[[${basic.major}]]</span><br><br>
+	专业方向：<span>[[${basic.detail}]]</span><br><br>
+	民族：<span>[[${basic.nat}]]</span><br><br>
+	政治面貌：<span>[[${basic.pol}]]</span><br><br>
+	出生日期：<span>[[${basic.birth}]]</span><br><br>
+	籍贯：<span>[[${basic.home}]]</span><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form action="/userList?document.getElementById("studentid").value" method="get">
+    <input type="hidden" th:value="${basic.studentid}" name="studentid"><br/>
+    <button>返回</button>
+</form>
+	
+</td>
+	
+	
+
+<tr>
+<td colspan="3" style="background-color:#FFA500;text-align:center;">
+王梓舟毕业设计</td>

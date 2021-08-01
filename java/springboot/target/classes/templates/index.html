@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+body{
+	background-image: url("back.jpg");
+
+	background-size: cover;
+	
+	width: 100%;
+	
+	padding:0;
+}
+</style>
+</head>
+<body>
+<div style="left: 630px; position: absolute; top: 280px;">
+<font size="6">学生画像系统查询页</font>
+</div>
+<div style="left: 650px; position: absolute; top: 350px;">
+<form action="/userList?document.getElementById("studentid").value" method="get">
+    学号：<input type="text" th:value="${studentid}" name="studentid"><br/><br>
+    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;<button>查询</button>
+</div>
+</form>
+</body>
+</html>

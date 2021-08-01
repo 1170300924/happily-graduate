@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+<meta charset="utf-8"> 
+<title>学生画像系统-阅读量维度</title> 
+
+</head>
+<body>
+
+<table width="1600" border="0">
+<tr>
+<td colspan="3"style="text-align:center;">
+<h1>学生画像系统-阅读量维度</h1>
+</td>
+</tr>
+
+<tr>
+<td style="width:100px;vertical-align:top;">
+</td>
+<td style="width:600px;vertical-align:top;">
+	阅读评分：<span>[[${reading}]]</span><br><br>
+	总阅读书目：<span>[[${total}]]</span><br><br>
+	上周阅读书目：<span>[[${lw}]]</span><br><br>
+	最近阅读书籍：<span>[[${book}]]</span><br><br>
+	十大阅读关键词：<span>[[${gjc}]]</span><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form action="/userList?document.getElementById("studentid").value" method="get">
+    <input type="hidden" th:value="${studentid}" name="studentid"><br/>
+    <button>返回</button>
+</form>
+	
+</td>
+	
+	
+
+<tr>
+<td colspan="3" style="background-color:#FFA500;text-align:center;">
+王梓舟毕业设计</td>

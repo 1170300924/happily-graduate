@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+<meta charset="utf-8"> 
+<title>学生画像系统</title> 
+
+</head>
+<body>
+
+<table width="1600" border="0">
+<tr>
+<td colspan="3"style="text-align:center;">
+<h1>学生画像系统-社交维度</h1>
+</td>
+</tr>
+
+<tr>
+<td style="width:100px;vertical-align:top;">
+</td>
+<td style="width:600px;vertical-align:top;">
+	分析得出以下是您可能的朋友及亲密度：<br><br>
+	朋友：<span>[[${f1}]]</span>  亲密度：<span>[[${f2}]]</span> <a href="javascript:go()"> 看看他>></a><br><br> <br><br>
+	朋友：<span>[[${f3}]]</span>  亲密度：<span>[[${f4}]]</span> <a href="javascript:go2()"> 看看他>></a><br><br> <br><br>
+	朋友：<span>[[${f5}]]</span>  亲密度：<span>[[${f6}]]</span> <a href="javascript:go3()"> 看看他>></a><br><br> <br><br>
+	朋友：<span>[[${f7}]]</span>  亲密度：<span>[[${f8}]]</span> <a href="javascript:go4()"> 看看他>></a><br><br> <br><br>
+	
+	<input type="hidden" th:value="${f1}" name="id1">
+	<input type="hidden" th:value="${f3}" name="id2">
+	<input type="hidden" th:value="${f5}" name="id3">
+	<input type="hidden" th:value="${f7}" name="id4">
+	<input type="hidden" th:value="${f1}" id="f1">
+	<input type="hidden" th:value="${f3}" id="f2">
+	<input type="hidden" th:value="${f5}" id="f3">
+	<input type="hidden" th:value="${f7}" id="f4">
+	<script type="text/javascript">
+	    var f1=document.getElementById('f1').value;
+	    var f2=document.getElementById('f2').value;
+	    var f3=document.getElementById('f3').value;
+	    var f4=document.getElementById('f4').value;
+		function go(){
+			var s="/userList?studentid="+f1;
+			window.location.href=s;
+		}
+		function go2(){
+			var s="/userList?studentid="+f2;
+			window.location.href=s;
+		}
+		function go3(){
+			var s="/userList?studentid="+f3;
+			window.location.href=s;
+		}
+		function go4(){
+			var s="/userList?studentid="+f4;
+			window.location.href=s;
+		}
+	</script>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form action="/userList?document.getElementById("studentid").value" method="get">
+    <input type="hidden" th:value="${studentid}" name="studentid"><br/>
+    <button>返回</button>
+</form>
+	
+</td>
+	
+	
+
+<tr>
+<td colspan="3" style="background-color:#FFA500;text-align:center;">
+王梓舟毕业设计</td>
